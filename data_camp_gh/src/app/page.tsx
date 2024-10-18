@@ -31,15 +31,6 @@ export default function Home() {
         return alert("Please install zkPass TransGate");
       }
 
-
-      const contractAddress = "0x79208010a972D0C0a978a9073bd0dcb659152072";
-      const contract = new ethers.Contract(
-        contractAddress,
-        AttestationABI,
-      );
-
-
-
       const res = await connector.launch(schemaId) as Res ;
       setResult(res);
 
@@ -52,18 +43,6 @@ export default function Home() {
       const taskId = ethers.hexlify(ethers.toUtf8Bytes(res.taskId));
       schemaId = ethers.hexlify(ethers.toUtf8Bytes(schemaId));
 
-      const chainParams = {
-        taskId,
-        schemaId,
-        uHash: res.uHash,
-        publicFieldsHash: res.publicFieldsHash,
-        validator: res.validatorAddress,
-        allocatorSignature: res.allocatorSignature,
-        validatorSignature: res.validatorSignature,
-      };
-
-      const t = await contract.attest(chainParams);
-      setAttestAtationTx(t.hash);
       setFollowed(true);
     } catch (err) {
       alert(JSON.stringify(err));
