@@ -1,0 +1,30 @@
+{
+    "issuer": "DataCamp",
+    "desc": "DataCamp user from Ghana",
+    "website": "https://www.datacamp.com",
+    "APIs": [
+      {
+        "host": "www.datacamp.com",
+        "intercept": {
+          "url": "api/users/signed_in.json",
+          "method": "GET"
+        },
+        "assert": [
+          {
+            "key": "geo_country",
+            "value": "GH",
+            "operation": "contain"
+          }
+        ],
+        "nullifier": "id"
+      }
+    ],
+    "HRCondition": [
+      "Ghanaian DataCamp Users"
+    ],
+    "tips": {
+      "message": "When you successfully log in, please click the 'Start' button to initiate the verification process."
+    },
+    "category": "Educational",
+    "id": "0xba445638a68e4e8c9d8050606abfe164"
+  }
