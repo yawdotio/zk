@@ -30,29 +30,17 @@ export default function Home() {
       if (!isAvailable) {
         return alert("Please install zkPass TransGate");
       }
-      if (window.ethereum == null) {
-        return alert("MetaMask not installed");
-      }
-      if (Number(window.ethereum.chainId) !== 2810) {
-        return alert("Please switch to Morph network");
-      }
 
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
-
-      const provider = new ethers.BrowserProvider(window.ethereum);
-      const signer = await provider.getSigner();
-      const account = await signer.getAddress();
 
       const contractAddress = "0x79208010a972D0C0a978a9073bd0dcb659152072";
       const contract = new ethers.Contract(
         contractAddress,
         AttestationABI,
-        signer
       );
 
 
 
-      const res = await connector.launch(schemaId, account) as Res ;
+      const res = await connector.launch(schemaId) as Res ;
       setResult(res);
 
       const isVerified = verifyEvmBasedResult(res, schemaId)
@@ -68,7 +56,6 @@ export default function Home() {
         taskId,
         schemaId,
         uHash: res.uHash,
-        recipient: account,
         publicFieldsHash: res.publicFieldsHash,
         validator: res.validatorAddress,
         allocatorSignature: res.allocatorSignature,
