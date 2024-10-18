@@ -90,7 +90,7 @@ export default function Home() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-500 to-blue-500 text-white">
     {!followed ? (
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Verify Your DataCamp Account</h1>
+        <h1 className="text-4xl font-bold mb-4">Verify Your DataCamp Account(For Ghanaian participants)</h1>
         <a
           href="https://datacamp.com"
           target="_blank"
