@@ -1,0 +1,30 @@
+{
+  "issuer": "DataCamp",
+  "desc": "DataCamp Account",
+  "website": "https://www.datacamp.com",
+  "APIs": [
+    {
+      "host": "www.datacamp.com",
+      "intercept": {
+        "url": "api/users/signed_in",
+        "method": "GET"
+      },
+      "assert": [
+        {
+          "key": "created_at",
+          "value": " ",
+          "operation": "!="
+        }
+      ],
+      "nullifier": "id"
+    }
+  ],
+  "HRCondition": [
+    "DataCamp Users"
+  ],
+  "tips": {
+    "message": "When you successfully log in, please click the 'Start' button to initiate the verification process."
+  },
+  "category": "Educational",
+  "id": "0x640d8584336d4f3caa6e0420654d1685"
+}
