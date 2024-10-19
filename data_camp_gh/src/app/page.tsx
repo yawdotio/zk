@@ -4,7 +4,7 @@ import TransgateConnect from "@zkpass/transgate-js-sdk";
 import { ethers } from "ethers";
 import { Res } from "./lib/types";
 import verifyEvmBasedResult from "./verifyEvmBasedResult";
-import verifySecondResult from "./verifySecondResult"; // Import second verification function
+
 
 declare global {
   interface Window {
@@ -38,9 +38,8 @@ export default function Home() {
       const res = (await connector.launch(schemaId)) as Res;
       setResult(res);
 
-      const isVerified = schemaId === "95e967845924499bb926fa790ae063cb" 
-        ? verifyEvmBasedResult(res, schemaId) 
-        : verifySecondResult(res, schemaId);
+      const isVerified = verifyEvmBasedResult(res, schemaId) 
+   
 
       if (!isVerified) {
         return alert("Invalid result");
@@ -79,20 +78,20 @@ export default function Home() {
 
           {/* First Verification Button */}
           <button
+            onClick={() => start(value2, appid1, setIsVerified2)}
+            className={`mt-4 px-4 py-2 bg-blue-500 rounded-md text-lg hover:bg-blue-600 ${isVerified2 ? "opacity-50" : ""}`}
+            disabled={isVerified2}
+          >
+            DataCamp User {isVerified2 && "✔"}
+          </button>
+
+          {/* Second Verification Button */}
+          <button
             onClick={() => start(value1, appid1, setIsVerified1)}
             className={`mt-4 px-4 py-2 bg-green-500 rounded-md text-lg hover:bg-green-600 ${isVerified1 ? "opacity-50" : ""}`}
             disabled={isVerified1}
           >
             Verify Ghanaian {isVerified1 && "✔"}
-          </button>
-
-          {/* Second Verification Button */}
-          <button
-            onClick={() => start(value2, appid1, setIsVerified2)}
-            className={`mt-4 px-4 py-2 bg-blue-500 rounded-md text-lg hover:bg-blue-600 ${isVerified2 ? "opacity-50" : ""}`}
-            disabled={isVerified2}
-          >
-            Verify Second Check {isVerified2 && "✔"}
           </button>
 
           {/* Show ticks for individual verifications */}
